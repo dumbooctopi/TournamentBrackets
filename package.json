@@ -1,0 +1,19 @@
+{
+  "name": "scratchproject",
+  "version": "1.0.0",
+  "description": "tournament bracket",
+  "main": "client/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumbooctopi/scratchproject.git"
+  },
+  "author": "team dumbooctopi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dumbooctopi/scratchproject/issues"
+  },
+  "homepage": "https://github.com/dumbooctopi/scratchproject#readme"
+}
