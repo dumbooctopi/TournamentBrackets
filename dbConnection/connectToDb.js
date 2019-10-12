@@ -7,8 +7,8 @@ const sequelize = new Sequelize(
   process.env.DB_PASSWORD,
   {
     host: 'salt.db.elephantsql.com',
-    dialect: 'postgres',
-  },
+    dialect: 'postgres'
+  }
 );
 
 sequelize
@@ -16,8 +16,11 @@ sequelize
   .then(() => {
     console.log('Connection has been established successfully.');
   })
-  .catch((err) => {
+  .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+
+// save to DB
+sequelize.sync({ logging: console.log }).then(() => {});
 
 module.exports = sequelize;
