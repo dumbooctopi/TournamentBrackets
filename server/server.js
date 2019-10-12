@@ -14,10 +14,14 @@ app.use((req, res, next) => {
   return next();
 });
 
+
+// add routers here:
+
+
 // test
-// app.use('/hi', (req, res, next) => {
-//   res.status(202).send('hi');
-// });
+app.use('/', (req, res, next) => {
+  res.status(200).sendFile(path.resolve(__dirname, './../index.html'));
+});
 
 // standard bad endpoint, send 404
 app.use('*', (req, res) => {
