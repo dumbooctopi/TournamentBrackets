@@ -11,6 +11,7 @@ module.exports = {
     index: '',
     publicPath: '/build/',
     compress: true,
+    port: 8080,
     proxy: {
       // https://webpack.js.org/configuration/dev-server/#devserver-proxy
       // return true for the context which means for all endpoints, proxy to the target

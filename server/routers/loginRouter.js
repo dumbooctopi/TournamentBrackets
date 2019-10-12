@@ -1,13 +1,13 @@
-//imports express moduel onto the page
+//imports express module onto the page
 const express = require('express');
 //imports router onto the page
-const router = express.Router();
+const loginRouter = express.Router();
 //import user model from db: need to check if connection is correct
-const user = require('./dbConnection/models/User.js')
+const user = require('/Users/diane/Codesmith/scratchproject/dbConnection/models/User.js')
 
 
 //route to oauth passport
-router.get('/',
+loginRouter.get('/',
 //controller to authenticate passport
 function(req,res, next){
     if(err){
@@ -26,7 +26,7 @@ function(req,res, next){
 
 //IS THIS NEEDED: route to database to create user, use createUser controller, takes in request (controller saves on res.locals.createuser), will send back a response to front-end that the user was created
 
-router.post('/', 
+loginRouter.post('/', 
 // user.createPlayer,
  function(req,res){
     res

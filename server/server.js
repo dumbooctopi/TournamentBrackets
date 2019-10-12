@@ -8,9 +8,9 @@ const userController = require('../server/controllers/user');
 require('dotenv').config();
 
 // require in router
-const loginRouter = require("./routers/loginRouter.js/index.js.js.js")
-const adminRouter = require("./routers/adminRouter.js/index.js.js")
-const userRouter = require("./routers/userRouter.js/index.js.js")
+const loginRouter = require("./routers/loginRouter.js")
+const adminRouter = require("./routers/adminRouter.js")
+const userRouter = require("./routers/userRouter.js")
 const app = express();
 const PORT = 3000;
 
@@ -78,7 +78,7 @@ app.get('/logout', (req, res) => {
 
 // add routers here:
 //routes to create user//app.use will respond to any path that starts with '/signup', regardless of HTTP verb used
-app.use('/signup', signUpRouter)
+// app.use('/signup', signUpRouter)
 //if you're at the login page and you aren't a user yet
 app.use('/login',loginRouter);
 // app.post('signup', router)

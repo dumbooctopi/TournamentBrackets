@@ -1,9 +1,24 @@
 //imports express moduel onto the page
 const express = require('express');
 //imports router onto the page
-const router = express.Router();
+const adminRouter = express.Router();
+const userController = require('./../controllers/user')
 
 
+//creates admin user
+adminRouter.post('/signup',
+userController.createUser,
+function(req,res){
+    if(err){
+        res
+        .status(400)
+        .send('user already has an account')
+    }
+    res
+    .status(200)
+    .send({'status':'admin user authenticated'})
+}
+)
 // //rout to grab users
 // router.get('/createtournament', 
 // //get player controller,
@@ -21,10 +36,10 @@ const router = express.Router();
 // )
 //create user: send request to database, adds createUser controller, sends res.locals.user
 
-router.post('/createtournament',
-//grabplayers controller
+adminRouter.post('/createtournament',
+//grabplayers controller    
 //createtournament controller
- function(req,res,next){
+ function(req,res){
     // console.log(req.body)
     //check if the data is sent res.locals.user
     res

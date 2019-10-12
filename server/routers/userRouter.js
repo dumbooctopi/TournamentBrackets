@@ -1,14 +1,14 @@
 //imports express moduel onto the page
 const express = require('express');
 //imports router onto the page
-const router = express.Router();
+const userRouter = express.Router();
 
 //user can grab full tournament details from database
-router.get('/', 
+userRouter.get('/', 
 //controller to grab tournament details from database
 //controller to grab game details from database
 //controller to grab player info:points/ranking from database
-function(req,res,next){
+function(req,res){
     if(err){
         res
         .status(400)
