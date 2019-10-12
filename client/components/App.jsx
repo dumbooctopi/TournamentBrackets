@@ -4,7 +4,7 @@ import '../styles.css';
 
 const App = () => (
   <div>
-  HELLO BOB
+  HELLO
     {/* <Header /> */}
     {/* <MainContainer /> */}
     {/* <List /> */}

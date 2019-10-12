@@ -1,5 +1,6 @@
+import { ADD_USER } from '../constants/actionTypes'
 const initialState = {
-  users: []
+  users: ['BOBBY', "JOSEPH", "DAVE"]
 };
 function rootReducer(state = initialState, action) {
   if (action.type === ADD_USER) {
