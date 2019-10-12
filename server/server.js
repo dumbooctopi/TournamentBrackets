@@ -1,7 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const User = require('../dbConnection/models/User');
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
+const session = require('express-session');
+const userController = require('../server/controllers/user');
+require('dotenv').config();
+
 // require in router
 const loginRouter = require("./routers/loginRouter.js/index.js.js.js")
 const adminRouter = require("./routers/adminRouter.js/index.js.js")
@@ -10,6 +15,10 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ secret: process.env.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //check if the root directory will be in public or client
 app.use(express.static(path.join(__dirname, 'client')))
@@ -20,6 +29,51 @@ app.use((req, res, next) => {
     `METHOD: ${req.method}, PATH: ${req.url}, BODY: ${JSON.stringify(req.body)}`
   );
   return next();
+});
+
+/**
+ * passport oauth
+ */
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: 'http://localhost:8080/oauth/github/callback'
+    },
+    function(accessToken, refreshToken, profile, cb) {
+      // console.log('github profile#', profile.username, profile.photos[0].value);
+      const gitUser = {};
+      gitUser.username = profile.username;
+      gitUser.avatar = profile.photos[0].value;
+      userController.createUser(gitUser, cb);
+    }
+  )
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(async (user, done) => {
+  done(null, user);
+});
+
+app.get('/oauth/github', passport.authenticate('github'));
+
+app.get(
+  '/oauth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  function(req, res) {
+    // if()
+    console.log('user###', req.user);
+    res.redirect('/admin');
+  }
+);
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
 });
 
 // add routers here:
