@@ -10,18 +10,14 @@ const User = sequelize.define('user', {
   username: Sequelize.STRING,
   avatar: Sequelize.STRING,
   points: Sequelize.INTEGER,
-  created_at: {
-    type: 'TIMESTAMP',
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    allowNull: false
-  },
-  updated_at: {
-    type: 'TIMESTAMP',
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+  role: {
+    type: Sequelize.STRING,
+    defaultValue: 'user',
     allowNull: false
   }
 });
 
-// sequelize.sync({ logging: console.log }).then(() => {});
+// write to DB
+sequelize.sync({ logging: console.log }).then(() => {});
 
 module.exports = User;
