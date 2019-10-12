@@ -4,8 +4,10 @@ import '../styles.css';
 
 const App = () => (
   <div>
+  HELLO BOB
     {/* <Header /> */}
     {/* <MainContainer /> */}
+    {/* <List /> */}
   </div>
 );
 
