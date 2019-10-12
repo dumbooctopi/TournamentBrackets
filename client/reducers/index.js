@@ -3,9 +3,10 @@ const initialState = {
   users: ['BOBBY', "JOSEPH", "DAVE"]
 };
 function rootReducer(state = initialState, action) {
+  console.log("PAYLOAD", action.payload)
   if (action.type === ADD_USER) {
     return Object.assign({}, state, {
-      articles: state.articles.concat(action.payload)
+      users: state.users.concat(action.payload)
     });
   }
 
