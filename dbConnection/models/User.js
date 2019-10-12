@@ -5,7 +5,7 @@ const User = sequelize.define('user', {
   _id: {
     type: Sequelize.UUID,
     defaultValue: Sequelize.UUIDV1,
-    primaryKey: true,
+    primaryKey: true
   },
   username: Sequelize.STRING,
   avatar: Sequelize.STRING,
@@ -13,11 +13,8 @@ const User = sequelize.define('user', {
   role: {
     type: Sequelize.STRING,
     defaultValue: 'user',
-    allowNull: false,
-  },
+    allowNull: false
+  }
 });
-
-// write to DB
-sequelize.sync({ logging: console.log }).then(() => {});
 
 module.exports = User;
