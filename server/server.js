@@ -42,7 +42,6 @@ passport.use(
       callbackURL: 'http://localhost:8080/oauth/github/callback'
     },
     function(accessToken, refreshToken, profile, cb) {
-      // console.log('github profile#', profile.username, profile.photos[0].value);
       const gitUser = {};
       gitUser.username = profile.username;
       gitUser.avatar = profile.photos[0].value;
@@ -65,8 +64,7 @@ app.get(
   '/oauth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
-    // if()
-    console.log('user###', req.user);
+    // TODO: redirect based on user role
     res.redirect('/admin');
   }
 );
