@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const User = require('../dbConnection/models/User');
 // require in router
 
 const app = express();
@@ -10,13 +11,13 @@ app.use(bodyParser.json());
 
 // flow message
 app.use((req, res, next) => {
-  console.log(`METHOD: ${req.method}, PATH: ${req.url}, BODY: ${JSON.stringify(req.body)}`);
+  console.log(
+    `METHOD: ${req.method}, PATH: ${req.url}, BODY: ${JSON.stringify(req.body)}`
+  );
   return next();
 });
 
-
 // add routers here:
-
 
 // test
 app.use('/', (req, res, next) => {
@@ -34,7 +35,7 @@ app.use('*', (req, res) => {
 app.use((err, req, res, next) => {
   const defaultError = {
     status: 500,
-    message: 'Default Error from the Global Error Handler',
+    message: 'Default Error from the Global Error Handler'
   };
 
   console.log('global error handler triggered');
