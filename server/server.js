@@ -3,13 +3,18 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const User = require('../dbConnection/models/User');
 // require in router
-
+const loginRouter = require("./routers/loginRouter.js/index.js.js.js")
+const adminRouter = require("./routers/adminRouter.js/index.js.js")
+const userRouter = require("./routers/userRouter.js/index.js.js")
 const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
 
+//check if the root directory will be in public or client
+app.use(express.static(path.join(__dirname, 'client')))
 // flow message
+//delete next param?
 app.use((req, res, next) => {
   console.log(
     `METHOD: ${req.method}, PATH: ${req.url}, BODY: ${JSON.stringify(req.body)}`
@@ -18,9 +23,19 @@ app.use((req, res, next) => {
 });
 
 // add routers here:
-
-// test
-app.use('/', (req, res, next) => {
+//routes to create user//app.use will respond to any path that starts with '/signup', regardless of HTTP verb used
+app.use('/signup', signUpRouter)
+//if you're at the login page and you aren't a user yet
+app.use('/login',loginRouter);
+// app.post('signup', router)
+//admin create tournament page
+app.use('/admin', adminRouter)
+//admin lookup
+//user view tournament
+app.use('user', userRouter)
+// renders main page:need to add actual main page, probaby will be the login page
+//ask if there is an error, send to signup page, send request to router
+app.use('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, './../index.html'));
 });
 
