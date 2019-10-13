@@ -3,8 +3,8 @@ const express = require('express');
 // imports router onto the page
 const loginRouter = express.Router();
 // import user model from db: need to check if connection is correct
-const user = require('../dbConnection/models/User.js');
-
+// const user = require('../dbConnection/models/User.js');
+const user = require('../../dbConnection/models/User')
 
 // route to oauth passport
 loginRouter.get('/',
