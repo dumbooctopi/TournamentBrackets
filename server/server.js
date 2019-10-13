@@ -95,7 +95,7 @@ app.use('/admin', adminRouter);
 app.use('/users', userRouter);
 
 // tournament router
-app.use('/tournaments', tournamentRouter);
+//app.use('/tournaments', tournamentRouter);
 
 // renders main page:need to add actual main page, probaby will be the login page
 // ask if there is an error, send to signup page, send request to router
@@ -117,7 +117,7 @@ app.use((err, req, res, next) => {
     message: 'Default Error from the Global Error Handler',
   };
 
-  console.log('global error handler triggered');
+  console.log('global error handler triggered', err);
   const assignError = { ...defaultError, ...err };
 
   // send the response
