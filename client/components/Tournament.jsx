@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actionCreator';
+import MatchBrackets from './MatchBrackets';
 
 const mapStateToProps = state => {
   return { tournaments: state.tournaments };
@@ -42,6 +43,7 @@ class Tournament extends React.Component {
           tournaments: [...this.state.tournaments, matchName],
           currentTournament: data
         });
+        console.log(this.state)
       });
   }
 
@@ -62,6 +64,7 @@ class Tournament extends React.Component {
               </option>
             ))}
         </select>
+        <MatchBrackets state={this.state}/>
       </div>
     );
   }

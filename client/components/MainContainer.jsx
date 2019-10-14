@@ -54,7 +54,11 @@ class ConnectedList extends React.Component{
       method: 'post',
       body: JSON.stringify({ name: this.state.tournamentName, rounds: 3, winner_id: 0, playerIds: this.state.players}),
       headers: { 'Content-type': 'application/json' }
-    }).then(res=>res.json()).then(data=>console.log(data))
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+      this.props.history.push('/tournaments')
+    })
   }
 
   render(){

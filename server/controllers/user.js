@@ -22,8 +22,8 @@ userController.getAll = async (req, res, next) => {
   const query = User.findAll({ attributes: ['id', 'username', 'avatar'] });
   const users = await query;
   const userData = users.map((a) => a.dataValues);
-  console.log("DATA",userData)
-  res.status(200).send(userData);
+  // console.log("DATA",userData)
+  // res.status(200).send(userData);
   res.locals.userData = userData;
   return next();
 };

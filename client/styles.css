@@ -12,3 +12,25 @@
   box-shadow: 40px 36px 56px 0px rgba(147,237,222,1);
   border-radius: 10px;
 }
+
+#gamesDisplay {
+  margin: auto;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.match {
+  padding-top: 20px;
+  text-align: center;
+  height: 60px;
+  width: 200px;
+  margin-top: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-block-color: black;
+  box-shadow: 0px 0px 68px 38px rgba(51,40,51,1);
+}
