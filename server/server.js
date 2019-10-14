@@ -82,7 +82,8 @@ app.get('/logout', (req, res) => {
 });
 
 // add routers here:
-// routes to create user//app.use will respond to any path that starts with '/signup', regardless of HTTP verb used
+// routes to create user//app.use will respond to any path that starts with '/signup',
+// regardless of HTTP verb used
 // app.use('/signup', signUpRouter)
 // if you're at the login page and you aren't a user yet
 // ! obsolete endpoint
@@ -95,7 +96,7 @@ app.use('/admin', adminRouter);
 app.use('/users', userRouter);
 
 // tournament router
-// app.use('/tournaments', tournamentRouter);
+app.use('/tournaments', tournamentRouter);
 
 // renders main page:need to add actual main page, probaby will be the login page
 // ask if there is an error, send to signup page, send request to router
