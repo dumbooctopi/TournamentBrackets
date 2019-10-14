@@ -49,7 +49,7 @@ adminRouter.patch('/updateWinner',
   matchController.updateOrCreateNextMatch,
   (req, res) => {
     // console.log(res.locals.updatedMatch);
-    res.status(200).send('hello');
+    res.status(200).json(res.locals.nextMatch);
   });
 // patch/put games
 // patch/put scores
