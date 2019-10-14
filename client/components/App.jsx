@@ -43,7 +43,6 @@ class App extends React.Component{
           <Route exact path="/" component={Splash} />
           <Route path="/main" component={MainContainer} />
           {/* <Route path="/tournament" component={Tournament} /> */}
-
         </React.Fragment>
       );
     
