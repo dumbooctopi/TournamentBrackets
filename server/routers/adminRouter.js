@@ -6,11 +6,11 @@ const userController = require('./../controllers/user');
 const tournamentController = require('./../controllers/tournamentControllers');
 const matchController = require('./../controllers/matchControllers');
 
-adminRouter.get('/', (req, res, next)=>{
-  console.log(req.user.username)
-  userController.createUser(req.user, console.log)
-  res.redirect('/main')
-})
+adminRouter.get('/', (req, res, next) => {
+  console.log(req.user.username);
+  userController.createUser(req.user, console.log);
+  res.redirect('/main');
+});
 
 // creates admin user
 adminRouter.post('/signup',
@@ -42,6 +42,15 @@ adminRouter.post('/makeTournament',
 
 // get tournament details
 // patch/put tournament
+adminRouter.patch('/updateWinner',
+  // use match controller to update a match's winner
+  matchController.updateWinner,
+  // matchController to find the next game that needs to be updated/created
+  matchController.updateOrCreateNextMatch,
+  (req, res) => {
+    // console.log(res.locals.updatedMatch);
+    res.status(200).send('hello');
+  });
 // patch/put games
 // patch/put scores
 // patch/put player seeding/ranking

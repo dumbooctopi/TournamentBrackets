@@ -86,7 +86,7 @@ app.get('/logout', (req, res) => {
 // regardless of HTTP verb used
 // app.use('/signup', signUpRouter)
 // if you're at the login page and you aren't a user yet
-// ! obsolete endpoint
+// ! obsolete endpoint???
 app.use('/login', loginRouter);
 // app.post('signup', router)
 // admin create tournament page
