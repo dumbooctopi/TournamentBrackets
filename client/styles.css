@@ -1,0 +1,14 @@
+#root {
+  display: flex;
+  height: 100%;
+}
+
+#github_button {
+  height: 400px;
+  width: 400px;
+  margin: auto auto;
+  font-size: 120px;
+  background-color: lightgray;
+  box-shadow: 40px 36px 56px 0px rgba(147,237,222,1);
+  border-radius: 10px;
+}

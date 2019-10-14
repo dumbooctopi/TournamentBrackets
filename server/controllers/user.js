@@ -19,10 +19,12 @@ userController.createUser = (gitUser, cb) => {
 };
 
 userController.getAll = async (req, res, next) => {
-  const query = User.findAll({ attributes: ['_id', 'username', 'avatar'] });
+  const query = User.findAll({ attributes: ['id', 'username', 'avatar'] });
   const users = await query;
   const userData = users.map((a) => a.dataValues);
+  console.log("DATA",userData)
   res.status(200).send(userData);
+  next();
 };
 
 // middleware to get usernames for all matches on res.locals.matches
