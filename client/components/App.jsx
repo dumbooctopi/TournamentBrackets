@@ -7,9 +7,9 @@ import MainContainer from './MainContainer.jsx'
 import Splash from './Splash.jsx'
 import '../styles.css';
 import { logIn } from "../actions/actionCreator";
-
+import Tournament from './Tournament'
 const mapStateToProps = function(state) {
-  console.log("STATE", state)
+  // console.log("STATE", state)
   return {
     isLoggedIn: state.isLoggedIn
   }
