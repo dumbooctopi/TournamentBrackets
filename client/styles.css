@@ -1,0 +1,11 @@
+#root {
+  display: flex;
+  height: 100%;
+}
+
+#github_button {
+  height: 400px;
+  width: 400px;
+  margin: auto;
+  font-size: 120px;
+}

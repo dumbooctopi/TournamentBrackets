@@ -5,6 +5,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 const userController = require('../server/controllers/user');
+const cors = require('cors')
 require('dotenv').config();
 
 // require in router
@@ -15,6 +16,8 @@ const tournamentRouter = require('./routers/tournamentRouter.js');
 
 const app = express();
 const PORT = 3000;
+
+app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -70,6 +73,7 @@ app.get(
   (req, res) => {
     // TODO: redirect based on user role
     res.redirect('/admin');
+    res.end()
   },
 );
 
@@ -78,6 +82,7 @@ app.get(
 
 app.get('/logout', (req, res) => {
   req.logout();
+  req.session.destroy();
   res.redirect('/');
 });
 

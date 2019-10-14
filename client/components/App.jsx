@@ -31,14 +31,14 @@ class App extends React.Component{
   
   handleClick(e){
     // this.setState({isLoggedIn:true}, console.log(this.state))
-    this.props.logIn()
+    // this.props.logIn()
     // this.setState({isLoggedIn:this.props.isLoggedIn})
-    setInterval(console.log(this.props.isLoggedIn), 2000)
+    // setInterval(console.log(this.props.isLoggedIn), 2000)
   }
 
   render(){
-    if(this.props.isLoggedIn){
-      return <div>hihihi</div>
+    if(!this.props.isLoggedIn){
+      return <button id="github_button" onClick={()=>location.href='http://localhost:8080/oauth/github'}>Github Login</button>
     } else {
       return (
         <div>
