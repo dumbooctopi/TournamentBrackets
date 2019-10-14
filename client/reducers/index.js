@@ -4,7 +4,7 @@ import { LOGGED_IN } from '../constants/actionTypes'
 
 const initialState = {
   isLoggedIn: false,
-  users: ['BOBBY', "JOSEPH", "DAVE"]
+  users: []
 };
 function rootReducer(state = initialState, action) {
 
