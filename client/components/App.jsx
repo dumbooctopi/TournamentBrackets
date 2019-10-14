@@ -41,7 +41,9 @@ class App extends React.Component{
       return (
         <React.Fragment>
           <Route exact path="/" component={Splash} />
-          <Route path="/admin" component={MainContainer} />
+          <Route path="/main" component={MainContainer} />
+          {/* <Route path="/tournament" component={Tournament} /> */}
+
         </React.Fragment>
       );
     

@@ -6,19 +6,25 @@ const userController = require('./../controllers/user');
 const tournamentController = require('./../controllers/tournamentControllers');
 const matchController = require('./../controllers/matchControllers');
 
-// // creates admin user
-// adminRouter.post('/signup',
-//   userController.createUser,
-//   (req, res) => {
-//     if (err) {
-//       res
-//         .status(400)
-//         .send('user already has an account');
-//     }
-//     res
-//       .status(200)
-//       .send({ status: 'admin user authenticated' });
-//   });
+adminRouter.get('/', (req, res, next)=>{
+  console.log(req.user.username)
+  userController.createUser(req.user, console.log)
+  res.redirect('/main')
+})
+
+// creates admin user
+adminRouter.post('/signup',
+  userController.createUser,
+  (req, res) => {
+    if (err) {
+      res
+        .status(400)
+        .send('user already has an account');
+    }
+    res
+      .status(200)
+      .send({ status: 'admin user authenticated' });
+  });
 
 // route to make a tournament
 // req body will be an object with an array of userIds, and a name of the tournament (string)
