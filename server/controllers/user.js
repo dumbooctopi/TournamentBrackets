@@ -24,7 +24,6 @@ userController.getAll = async (req, res, next) => {
   const userData = users.map((a) => a.dataValues);
   console.log("DATA",userData)
   res.status(200).send(userData);
-  next();
 };
 
 // middleware to get usernames for all matches on res.locals.matches
