@@ -15,7 +15,7 @@ const Match = sequelize.define('match', {
   winner_id: { type: Sequelize.INTEGER, allowNull: true },
   // column and round are attempts to index all the games in a bracket
   columnNumber: Sequelize.INTEGER,
-  roundNumber: Sequelize.INTEGER
+  roundNumber: Sequelize.INTEGER,
 });
 
 module.exports = Match;
