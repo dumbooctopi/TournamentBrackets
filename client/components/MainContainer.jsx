@@ -30,7 +30,14 @@ class ConnectedList extends React.Component{
   }
 
   choosePlayer(e){
+    if(e.target.style.backgroundColor !== 'lightblue') e.target.style.backgroundColor = 'lightblue'
+    else e.target.style.backgroundColor = ''
+
     if(!this.state.players.includes(e.target.innerHTML)) this.setState({players:[...this.state.players, e.target.innerHTML]})
+    else {
+      const newState = [...this.state.players].filter(ele=>ele!==e.target.innerHTML)
+      this.setState({players: newState})
+    }
     console.log(this.state)
   }
 
