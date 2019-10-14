@@ -16,7 +16,8 @@ class Tournament extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tournaments: []
+      tournaments: [],
+      currentTournament: []
     };
     this.chooseTournament = this.chooseTournament.bind(this);
   }
@@ -31,11 +32,16 @@ class Tournament extends React.Component {
       );
   }
 
+  // add current tournament data to state for prop drilling on the presentational component
   chooseTournament(e) {
-    console.log(this.state.tournaments);
-    if (!this.state.tournaments.includes(e.target.innerHTML))
-      this.setState({
-        tournaments: [...this.state.tournaments, e.target.innerHTML]
+    const matchName = e.target.innerHTML;
+    fetch('http://localhost:8080/tournaments/' + e.target.value)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          tournaments: [...this.state.tournaments, matchName],
+          currentTournament: data
+        });
       });
   }
 
@@ -43,21 +49,19 @@ class Tournament extends React.Component {
     return (
       <div>
         <h3>TOURNAMENTS</h3>
-        <ul className='list-group'>
+        <select onChange={e => this.chooseTournament(e)} className='list-group'>
           {this.props.tournaments.length > 0 &&
             this.props.tournaments.map((el, ind) => (
-              <a href={'/tournaments/' + el.split('#')[0]}>
-                <li
-                  onClick={e => this.chooseTournament(e)}
-                  className='list-group-item'
-                  key={el + ind}
-                  id={el.split('#')[0]}
-                >
-                  {el.split('#')[1]}
-                </li>
-              </a>
+              <option
+                className='list-group-item'
+                key={el + ind}
+                id={el.split('#')[0]}
+                value={el.split('#')[0]}
+              >
+                {el.split('#')[1]}
+              </option>
             ))}
-        </ul>
+        </select>
       </div>
     );
   }
