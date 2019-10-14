@@ -7,23 +7,21 @@ tournamentController.addToTournamentTable = (req, res, next) => {
   // console.log(req.body);
   // create the tournament row based on the req.body
   const { name, rounds, winner_id } = req.body;
-  Tournament.create({ name, rounds, winner_id })
-    .then((row) => {
-      // console.log(row);
-      res.locals.newTournament = row.dataValues;
-      return next();
-    });
+  Tournament.create({ name, rounds, winner_id }).then(row => {
+    // console.log(row);
+    res.locals.newTournament = row.dataValues;
+    return next();
+  });
 };
 
-tournamentController.getAllIds = (req,res,next)=>{
-  Tournament.findAll({attributes:['id', 'name']})
-  .then((dataFound) =>{
-
-    res.locals.allTournaments = dataFound.map((a)  => a.dataValues)
+tournamentController.getAllIds = (req, res, next) => {
+  Tournament.findAll({ attributes: ['id', 'name'] }).then(dataFound => {
+    // console.log(dataFound);
+    res.locals.allTournaments = dataFound.map(a => a.dataValues);
     // console.log('look here ===> ', newArray)
-    return next()
-  })
-}
+    return next();
+  });
+};
 
 module.exports = tournamentController;
 

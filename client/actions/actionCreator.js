@@ -1,14 +1,17 @@
+import * as types from '../constants/actionTypes';
 
 export function addUser(payload) {
-  return { type: "ADD_USER", payload }
-};
+  return { type: types.ADD_USER, payload };
+}
 
 export function logIn() {
-  return { type: "LOGGED_IN"}
-};
+  return { type: types.LOGGED_IN };
+}
 
 export function loggedOut(payload) {
-  return { type: "LOGGED_OUT", payload }
-};
+  return { type: types.LOGGED_OUT, payload };
+}
 
-
+export function addTournament(payload) {
+  return { type: types.ADD_TOURNAMENT, payload };
+}

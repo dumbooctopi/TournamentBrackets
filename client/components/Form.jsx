@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addUser } from "../actions/actionCreator";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// import { addUser } from "../actions/actionCreator";
+import * as actions from '../actions/actionCreator';
 
 function mapDispatchToProps(dispatch) {
   return {
-    addUser: user => dispatch(addUser(user))
+    addUser: user => dispatch(actions.addUser(user))
   };
 }
 
@@ -12,7 +13,7 @@ class ConnectedForm extends Component {
   constructor() {
     super();
     this.state = {
-      user: ""
+      user: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,30 +25,31 @@ class ConnectedForm extends Component {
     event.preventDefault();
     const { user } = this.state;
     this.props.addUser(user);
-    this.setState({ user: "" });
+    this.setState({ user: '' });
   }
 
   render() {
     const { user } = this.state;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="user">User</label>
-            <input
-              type="text"
-              className="form-control"
-              value={user}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button type="submit" className="btn btn-success btn-lg">
-            SAVE
-          </button>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <div className='form-group'>
+          <label htmlFor='user'>User</label>
+          <input
+            type='text'
+            className='form-control'
+            value={user}
+            onChange={this.handleChange}
+          />
+        </div>
+        <button type='submit' className='btn btn-success btn-lg'>
+          SAVE
+        </button>
+      </form>
     );
   }
 }
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
+const Form = connect(
+  null,
+  mapDispatchToProps
+)(ConnectedForm);
 export default Form;
