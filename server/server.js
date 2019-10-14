@@ -118,7 +118,7 @@ app.use((err, req, res, next) => {
     message: 'Default Error from the Global Error Handler',
   };
 
-  console.log('global error handler triggered', err);
+  console.log('global error handler triggered');
   const assignError = { ...defaultError, ...err };
 
   // send the response

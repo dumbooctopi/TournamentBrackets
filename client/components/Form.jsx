@@ -26,23 +26,26 @@ class ConnectedForm extends Component {
     this.props.addUser(user);
     this.setState({ user: "" });
   }
+
   render() {
     const { user } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="user">User</label>
-          <input
-            type="text"
-            className="form-control"
-            value={user}
-            onChange={this.handleChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-success btn-lg">
-          SAVE
-        </button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="user">User</label>
+            <input
+              type="text"
+              className="form-control"
+              value={user}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-success btn-lg">
+            SAVE
+          </button>
+        </form>
+      </div>
     );
   }
 }
