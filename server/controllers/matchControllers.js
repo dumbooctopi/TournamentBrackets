@@ -95,10 +95,15 @@ matchController.updateOrCreateNextMatch = async (req, res, next) => {
   // if nextRound === 4 then the res.locals.updatedMatch was the finals
   if (nextRound === 4) {
     // update tournament winnerId with winner_id (destructed above)
+    // async await probably not necessary, but i'm not fucking with it now
     await Tournament.update({ winner_id },
-      { where: { id: tournament_id } })
-      .then((data) => {
-        console.log(data);
+      {
+        where: { id: tournament_id },
+        returning: true,
+      })
+      .then(([changedCount, changedRowObj]) => {
+        console.log(changedRowObj.dataValues);
+        res.locals.nextMatch = 'tournament is over!';
         return next();
       });
   } else {
@@ -131,8 +136,8 @@ matchController.updateOrCreateNextMatch = async (req, res, next) => {
             where: { tournament_id, roundNumber: nextRound, columnNumber: nextColumn },
             returning: true,
           }).then(([changedCount, changedRowObj]) => {
-            console.log('changed match: ', changedRowObj);
-            res.locals.nextMatch = changedRowObj;
+            console.log('changed match: ', changedRowObj.dataValues, 'changedCount', changedCount);
+            res.locals.nextMatch = changedRowObj.dataValues;
             return next();
           });
         }
