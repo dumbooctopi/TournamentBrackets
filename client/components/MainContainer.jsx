@@ -30,12 +30,13 @@ class ConnectedList extends React.Component{
   }
 
   choosePlayer(e){
+    console.log(e.target.value)
     if(e.target.style.backgroundColor !== 'lightblue') e.target.style.backgroundColor = 'lightblue'
     else e.target.style.backgroundColor = ''
 
-    if(!this.state.players.includes(e.target.innerHTML)) this.setState({players:[...this.state.players, e.target.innerHTML]})
+    if(!this.state.players.includes(e.target.value)) this.setState({players:[...this.state.players, e.target.value]})
     else {
-      const newState = [...this.state.players].filter(ele=>ele!==e.target.innerHTML)
+      const newState = [...this.state.players].filter(ele=>ele!==e.target.value)
       this.setState({players: newState})
     }
     console.log(this.state)
@@ -47,12 +48,12 @@ class ConnectedList extends React.Component{
       Add Players
         <ul className="list-group" >
           {this.props.users.map((el, ind) => (
-            <li onClick={(e)=>this.choosePlayer(e)} className="list-group-item" key={el+ind}>
+            <li onClick={(e)=>this.choosePlayer(e)} value={el.id} className="list-group-item" key={el+ind}>
               {el.username}
             </li>
           ))}
         </ul>
-        <button>Create Tournament</button>
+        <button onClick={()=>console.log(this.state)}>Create Tournament</button>
       </div>
     ); 
   }
