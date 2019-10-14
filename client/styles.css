@@ -15,9 +15,13 @@
 
 #gamesDisplay {
   margin: auto;
-  display: flex;
+  display: grid;
   width: 100%;
-  justify-content: space-around;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 80px 80px 80px;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+
 }
 
 .match {
@@ -33,4 +37,8 @@
   border-width: 2px;
   border-block-color: black;
   box-shadow: 0px 0px 68px 38px rgba(51,40,51,1);
+}
+
+#2 {
+  background-color: red;
 }
