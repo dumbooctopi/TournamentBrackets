@@ -6,7 +6,11 @@ const userController = require('../controllers/user')
 // TODO: setup route to '/getAll' that calls on a controller to getAllUsers from the database
 // the response will be an array of objects contianing username, avatar & id
 //note get all users from a specific tournament
-userRouter.get('/getAll', userController.getAll)
+userRouter.get('/getAll', userController.getAll,(req,res)=>{
+  res
+  .status(200)
+  .json(res.locals.userData);
+})
 /*
 // user can grab full tournament details from database
 userRouter.get('/',

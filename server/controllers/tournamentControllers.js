@@ -15,6 +15,16 @@ tournamentController.addToTournamentTable = (req, res, next) => {
     });
 };
 
+tournamentController.getAllIds = (req,res,next)=>{
+  Tournament.findAll({attributes:['id', 'name']})
+  .then((dataFound) =>{
+
+    res.locals.allTournaments = dataFound.map((a)  => a.dataValues)
+    // console.log('look here ===> ', newArray)
+    return next()
+  })
+}
+
 module.exports = tournamentController;
 
 /*
