@@ -3,7 +3,8 @@ const express = require('express');
 // imports router onto the page
 const adminRouter = express.Router();
 const userController = require('./../controllers/user');
-
+const tournamentController = require('./../controllers/tournamentControllers');
+const matchController = require('./../controllers/matchControllers');
 
 // // creates admin user
 // adminRouter.post('/signup',
@@ -23,18 +24,12 @@ const userController = require('./../controllers/user');
 // req body will be an object with an array of userIds, and a name of the tournament (string)
 adminRouter.post('/makeTournament',
   // add tournament to tournements table
+  tournamentController.addToTournamentTable,
   // add all round 1 matches to matches table & return all created matches as the response
+  matchController.addRoundOneMatches,
+  userController.getUsernames,
   (req, res) => {
-    // errors handled in controllers
-    // if (err) {
-    //   res
-    //     .status(400)
-    //   // error would be either that there are no
-    //     .send(err);
-    // }
-    res
-      .status(200);
-    // .send('grabbed all players by id')
+    res.status(200).json(res.locals.matchesWithUsernames);
   });
 // create user: send request to database, adds createUser controller, sends res.locals.user
 
