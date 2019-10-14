@@ -12,7 +12,7 @@ class MatchBrackets extends React.Component {
         gridColumn: match.columnNumber,
         gridRow: match.roundNumber
       }
-      return <div style={divStyle} column={match.columnNumber} round={match.roundNumber} id={match.columnNumber} className="match" onClick={()=>confirm('alert')}>{match.player1Username} vs {match.player2Username}</div>
+      return <div style={divStyle} column={match.columnNumber} round={match.roundNumber} id={match.columnNumber} className="match" onClick={()=>prompt('Enter Winner ID')}>{match.player1Username} vs {match.player2Username}</div>
   })
     return (
       <div id="gamesDisplay">
