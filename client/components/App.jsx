@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import { connect } from "react-redux";
+import { Route, Link } from 'react-router-dom';
 
 import MainContainer from './MainContainer.jsx'
-import Form from './Form.jsx'
+import Splash from './Splash.jsx'
 import '../styles.css';
 import { logIn } from "../actions/actionCreator";
 
@@ -37,19 +38,13 @@ class App extends React.Component{
   }
 
   render(){
-    if(!this.props.isLoggedIn){
-      return <button id="github_button" onClick={()=>location.href='http://localhost:8080/oauth/github'}>Github Login</button>
-    } else {
       return (
-        <div>
-          {/* <Header /> */}
-          <MainContainer />
-          <Form />
-          <button onClick={this.handleClick}>Sign Up</button>
-  
-        </div>
+        <React.Fragment>
+          <Route exact path="/" component={Splash} />
+          <Route path="/admin" component={MainContainer} />
+        </React.Fragment>
       );
-    }
+    
   }
 }
 

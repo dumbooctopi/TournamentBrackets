@@ -5,7 +5,6 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 const userController = require('../server/controllers/user');
-const cors = require('cors')
 require('dotenv').config();
 
 // require in router
@@ -16,8 +15,6 @@ const tournamentRouter = require('./routers/tournamentRouter.js');
 
 const app = express();
 const PORT = 3000;
-
-app.use(cors())
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -73,7 +70,6 @@ app.get(
   (req, res) => {
     // TODO: redirect based on user role
     res.redirect('/admin');
-    res.end()
   },
 );
 
@@ -82,7 +78,6 @@ app.get(
 
 app.get('/logout', (req, res) => {
   req.logout();
-  req.session.destroy();
   res.redirect('/');
 });
 
@@ -100,7 +95,7 @@ app.use('/admin', adminRouter);
 app.use('/users', userRouter);
 
 // tournament router
-//app.use('/tournaments', tournamentRouter);
+// app.use('/tournaments', tournamentRouter);
 
 // renders main page:need to add actual main page, probaby will be the login page
 // ask if there is an error, send to signup page, send request to router
@@ -122,7 +117,7 @@ app.use((err, req, res, next) => {
     message: 'Default Error from the Global Error Handler',
   };
 
-  console.log('global error handler triggered', err);
+  console.log('global error handler triggered');
   const assignError = { ...defaultError, ...err };
 
   // send the response
