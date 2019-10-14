@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addUser } from "../actions/actionCreator";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// import { addUser } from "../actions/actionCreator";
+import * as actions from '../actions/actionCreator';
 
 function mapDispatchToProps(dispatch) {
   return {
-    addUser: user => dispatch(addUser(user))
+    addUser: user => dispatch(actions.addUser(user))
   };
 }
 
@@ -12,7 +13,7 @@ class ConnectedForm extends Component {
   constructor() {
     super();
     this.state = {
-      user: ""
+      user: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,7 +22,7 @@ class ConnectedForm extends Component {
     event.preventDefault();
     const { user } = this.state;
     this.props.addUser(user);
-    this.setState({ user: "" });
+    this.setState({ user: '' });
   }
 
   render() {
@@ -46,5 +47,8 @@ class ConnectedForm extends Component {
     );
   }
 }
-const Form = connect(null, mapDispatchToProps)(ConnectedForm);
+const Form = connect(
+  null,
+  mapDispatchToProps
+)(ConnectedForm);
 export default Form;
