@@ -2,10 +2,21 @@
 const express = require('express');
 // imports router onto the page
 const tournamentRouter = express.Router();
-// const tournamentController = require('./../controllers/tournamentControllers.js');
+const tournamentController = require('./../controllers/tournamentControllers.js');
 const matchController = require('./../controllers/matchControllers.js');
 const userController = require('./../controllers/user');
 
+
+
+tournamentRouter.get('/getall',
+//put middleware for get all
+tournamentController.getAllIds,
+(req,res) =>{
+  res
+  .status(200)
+  .json(res.locals.allTournaments)
+}
+)
 // endpoint to '/:id' get request
 // this will send a response with ALL MATCHES of a tournament at the given id
 tournamentRouter.get('/:id',
