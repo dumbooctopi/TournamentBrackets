@@ -22,8 +22,10 @@ userController.getAll = async (req, res, next) => {
   const query = User.findAll({ attributes: ['id', 'username', 'avatar'] });
   const users = await query;
   const userData = users.map((a) => a.dataValues);
-  res.locals.userData = userData
- return next();
+  console.log("DATA",userData)
+  res.status(200).send(userData);
+  res.locals.userData = userData;
+  return next();
 };
 
 // middleware to get usernames for all matches on res.locals.matches
