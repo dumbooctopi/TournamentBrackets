@@ -14,12 +14,9 @@ class ConnectedForm extends Component {
     this.state = {
       user: ""
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    this.setState({ user: event.target.value });
-  }
+
   handleSubmit(event) {
     event.preventDefault();
     const { user } = this.state;
@@ -33,17 +30,17 @@ class ConnectedForm extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label htmlFor="user">User</label>
+            <label htmlFor="user">Tournament Name  </label>
             <input
               type="text"
               className="form-control"
-              value={user}
-              onChange={this.handleChange}
+              value={this.props.state.tournamentName}
+              onChange={this.props.handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-success btn-lg">
+          {/* <button type="submit" className="btn btn-success btn-lg">
             SAVE
-          </button>
+          </button> */}
         </form>
       </div>
     );

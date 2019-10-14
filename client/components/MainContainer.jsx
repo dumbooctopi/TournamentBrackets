@@ -19,14 +19,21 @@ class ConnectedList extends React.Component{
   constructor(props){
     super(props)
     this.state = {
+      tournamentName:"",
       players:[]
     }
+    this.makeTournament = this.makeTournament.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.choosePlayer = this.choosePlayer.bind(this)
   }
 
   componentDidMount(){
     fetch('http://localhost:8080/users/getAll').then(res=>res.json())
     .then(data=> data.forEach(user=>this.props.addUser(user)))
+  }
+
+  handleChange(event) {
+    this.setState({ tournamentName: event.target.value });
   }
 
   choosePlayer(e){
@@ -42,6 +49,14 @@ class ConnectedList extends React.Component{
     console.log(this.state)
   }
 
+  makeTournament(){
+    fetch('http://localhost:8080/admin/makeTournament', {
+      method: 'post',
+      body: JSON.stringify({ name: this.state.tournamentName, rounds: 3, winner_id: 0, playerIds: this.state.players}),
+      headers: { 'Content-type': 'application/json' }
+    }).then(res=>res.json()).then(data=>console.log(data))
+  }
+
   render(){
     return (
       <div>
@@ -53,7 +68,8 @@ class ConnectedList extends React.Component{
             </li>
           ))}
         </ul>
-        <button onClick={()=>console.log(this.state)}>Create Tournament</button>
+        <Form handleChange={this.handleChange} state={this.state} />
+        <button onClick={this.makeTournament}>Create Tournament</button>
       </div>
     ); 
   }
