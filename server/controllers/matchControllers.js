@@ -41,8 +41,8 @@ matchController.addRoundOneMatches = (req, res, next) => {
   for (let i = 0; i < 4; i += 1) {
     const matchObj = {
       tournament_id: id,
-      player1_id: playerIds[2 * i],
-      player2_id: playerIds[2 * i + 1],
+      player1_id: playerIds[2 * i] || 0,
+      player2_id: playerIds[2 * i + 1] || 0,
       winner_id: 0,
       columnNumber: i + 1,
       roundNumber: 1,
